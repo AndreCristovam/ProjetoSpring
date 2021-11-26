@@ -25,7 +25,6 @@ public class Aluno implements Serializable {
 	
 
 	@Column(name="NOME_ALUNO")
-
 	private String nome;
 
 	public Integer getId() {
