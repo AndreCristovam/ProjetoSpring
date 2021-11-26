@@ -23,7 +23,8 @@ public class Aluno implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="ALUNO_NOME")
+
+	@Column(name="NOME_ALUNO")
 	private String nome;
 
 	public Integer getId() {
