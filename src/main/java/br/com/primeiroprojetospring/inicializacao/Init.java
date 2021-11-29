@@ -40,7 +40,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 		aluno3.setNome("Douglas das Neves");
 		alunoService.salvar(aluno3);
 		
-		//List<Aluno> listaAluno = alunoRepository.findAll();
+		
 		List<Aluno> listaAluno = alunoService.buscarTodosAlunos();
 		
 		for (Aluno aluno : listaAluno ) {
