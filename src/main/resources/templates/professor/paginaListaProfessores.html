@@ -32,8 +32,8 @@
 								<td th:text="${professor.nome}"></td>
 								<td>
 									<div class="btn-group pull-right">
-										<a class="btn btn-sm btn-primary">ALTERAR</a>
-										<a class="btn delete btn-sm btn-danger">EXCLUIR</a>
+										<a class="btn btn-sm btn-primary" th:href="@{/professor/alterar/{idProfessor}(idProfessor=${professor.id})}">ALTERAR</a>
+										<a class="btn delete btn-sm btn-danger" th:href="@{/professor/excluir/{idProfessor}(idProfessor=${professor.id})}">EXCLUIR</a>
 									</div>
 								</td>
 							</tr>
