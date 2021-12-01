@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 
 import br.com.primeiroprojetospring.domain.Aluno;
 import br.com.primeiroprojetospring.domain.Professor;
-import br.com.primeiroprojetospring.repository.AlunoRepository;
-import br.com.primeiroprojetospring.repository.ProfessorRepository;
 import br.com.primeiroprojetospring.service.AlunoService;
 import br.com.primeiroprojetospring.service.ProfessorService;
 

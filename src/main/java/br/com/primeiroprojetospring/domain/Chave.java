@@ -1,6 +1,5 @@
 package br.com.primeiroprojetospring.domain;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -10,22 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Aluno implements Serializable {
-	
+public class Chave implements Serializable {
 
-	
-	/**
-	 * Cria um endereço para localizar a serialização - para que nenhum dado se perda com o tempo
-	 */
-	private static final long serialVersionUID = -886604392341594251L;
+	private static final long serialVersionUID = 4492246752547242827L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-
-	@Column(name="NOME_ALUNO")
-	private String nome;
+	@Column(name="CODIGO_CHAVE")
+	private String codigo;
 
 	public Integer getId() {
 		return id;
@@ -35,15 +28,12 @@ public class Aluno implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
-	
-	
-	
 }

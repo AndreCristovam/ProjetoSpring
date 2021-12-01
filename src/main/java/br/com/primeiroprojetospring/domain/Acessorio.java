@@ -10,21 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Aluno implements Serializable {
+public class Acessorio implements Serializable {
 	
+	private static final long serialVersionUID = -6289229294210689983L;
 
-	
-	/**
-	 * Cria um endereço para localizar a serialização - para que nenhum dado se perda com o tempo
-	 */
-	private static final long serialVersionUID = -886604392341594251L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 
-	@Column(name="NOME_ALUNO")
+	@Column(name="NOME_ACESSORIO")
 	private String nome;
 
 	public Integer getId() {

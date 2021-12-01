@@ -10,25 +10,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Aluno implements Serializable {
+public class Documento implements Serializable {
 	
+	private static final long serialVersionUID = -955769089251692025L;
 
-	
-	/**
-	 * Cria um endereço para localizar a serialização - para que nenhum dado se perda com o tempo
-	 */
-	private static final long serialVersionUID = -886604392341594251L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 
-	@Column(name="NOME_ALUNO")
+	@Column(name="NOME_DOCUMENTO")
 	private String nome;
+	
+	@Column(name="CODIGO_DOCUMENTO")
+	private String codigo;
 
 	public Integer getId() {
 		return id;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public void setId(Integer id) {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http:www.thymeleaf.org">
+<head>
+<title>Cadastro de Acessorios</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="panel-heading" align="center">
+			<strong>CADASTRO DE ACESSÓRIOS</strong>
+		</div>
+		
+		<div class="panel-body border">
+			<form class="form-horizontal" th:object="${acessorio}" th:action="@{/acessorio/salvar}" method="POST" style="margin: 10px">
+				<div class="form-group">
+					<fieldset>
+						<div class="form-group row">
+							<label>NOME</label>
+							<input type="text" class="form-control input-sm" th:field="*{nome}" autofocus="autofocus"
+							placeholder="Informe o nome" maxlength="50"/>						
+						</div>
+					</fieldset>				
+				</div>
+				<div align="center">
+					<button type="submit" class="btn btn-sm btn-success">SALVAR</button>
+					<a th:href="@{/acessorio/listaAcessorios}" class="btn btn-sm btn-default">CANCELAR</a>
+				</div>				
+			</form>		
+		</div>		
+	</div>
+</body>
+</html>
