@@ -24,6 +24,8 @@
 								<th>ID</th>
 								<th>NOME</th>
 								<th>CHAVE</th>
+								<th>DOCUMENTO</th>
+								<th>ACESSÓRIO</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -32,6 +34,10 @@
 								<td th:text="${carro.id}"></td>
 								<td th:text="${carro.modelo}"></td>
 								<td th:text="${carro.chaveCarro.id}"></td>
+								<td th:text="${carro.documentoCarro.id}"></td>
+								<td>
+									<span th:each="acessorio : ${carro.acessorios}" th:text="${'' + acessorio.nome + ' / '}"></span>
+								</td>
 								<td>
 									<div class="btn-group pull-right">
 										<a class="btn btn-sm btn-primary" th:href="@{/carro/alterar/{idCarro}(idCarro=${carro.id})}">ALTERAR</a>

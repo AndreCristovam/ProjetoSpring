@@ -33,7 +33,7 @@ public class DocumentoService {
 		Documento documento = buscarDocumentoID(documentoAlterado.getId());
 		documento.setId(documentoAlterado.getId());
 		documento.setNome(documentoAlterado.getNome());
-		documento.setCodigo(documento.getCodigo());
+		documento.setCodigo(documentoAlterado.getCodigo());
 		return salvar(documento);
 	}
 	

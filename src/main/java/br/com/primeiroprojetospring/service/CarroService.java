@@ -33,7 +33,9 @@ public class CarroService {
 		Carro carro = buscarCarroID(carroAlterado.getId());
 		carro.setId(carroAlterado.getId());
 		carro.setModelo(carroAlterado.getModelo());
-		carro.setChaveCarro(carro.getChaveCarro());
+		carro.setChaveCarro(carroAlterado.getChaveCarro());
+		carro.setDocumentoCarro(carroAlterado.getDocumentoCarro());
+		carro.setAcessorios(carroAlterado.getAcessorios()); 
 		return salvar(carro);
 	}
 
