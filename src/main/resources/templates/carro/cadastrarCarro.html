@@ -38,6 +38,13 @@
 							</select>
 						</div>
 						<div class="form-group row">
+							<label>FABRICANTE</label>
+							<select class="form-control" th:field="*{fabricanteCarro}">
+								<option value="">Selecione o fabricante</option>
+								<option th:each="fabricante :${fabricante}" th:value="${fabricante.id}" th:text="${fabricante.id}"></option>
+							</select>
+						</div>
+						<div class="form-group row">
 							<label>ACESSÓRIOS</label>
 							<div th:each="acessorio : ${acessorio}">
 								<input type="checkbox" th:field="*{acessorios}" th:value="${acessorio.id}"/>

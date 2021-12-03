@@ -16,7 +16,7 @@ import br.com.primeiroprojetospring.service.AcessorioService;
 public class AcessorioController {
 	
 	@Autowired
-	private AcessorioService acessorioService;
+	private AcessorioService acessorioService; 
 	
 	@GetMapping("/listaAcessorios")
 	public ModelAndView  listaTodosAcessorio() {

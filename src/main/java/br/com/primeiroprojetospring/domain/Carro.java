@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -38,6 +39,18 @@ public class Carro implements Serializable {
 		joinColumns = {@JoinColumn(name="ID_CARRO")},
 		inverseJoinColumns = {@JoinColumn(name="ID_ACESSORIO")})	
 	private List<Acessorio> acessorios;
+	
+	@ManyToOne
+	@JoinColumn(name="ID_FABRICANTE")
+	private Fabricante fabricanteCarro;
+
+	public Fabricante getFabricanteCarro() {
+		return fabricanteCarro;
+	}
+
+	public void setFabricanteCarro(Fabricante fabricanteCarro) {
+		this.fabricanteCarro = fabricanteCarro;
+	}
 
 	public List<Acessorio> getAcessorios() {
 		return acessorios;

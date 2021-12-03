@@ -13,6 +13,7 @@ import br.com.primeiroprojetospring.service.AcessorioService;
 import br.com.primeiroprojetospring.service.CarroService;
 import br.com.primeiroprojetospring.service.ChaveService;
 import br.com.primeiroprojetospring.service.DocumentoService;
+import br.com.primeiroprojetospring.service.FabricanteService;
 
 @Controller
 @RequestMapping("carro")
@@ -30,6 +31,9 @@ public class CarroController {
 	@Autowired
 	private AcessorioService acessorioService;
 	
+	@Autowired
+	private FabricanteService fabricanteService;
+	
 	@GetMapping("/listaCarros")
 	public ModelAndView  listaTodosCarro() {
 		ModelAndView mView = new ModelAndView("carro/paginaListaCarros");
@@ -44,6 +48,7 @@ public class CarroController {
 		mView.addObject("chave", chaveService.buscarTodasChaves());
 		mView.addObject("documento", documentoService.buscarTodosDocumentos());
 		mView.addObject("acessorio", acessorioService.buscarTodosAcessorios());
+		mView.addObject("fabricante", fabricanteService.buscarTodosFabricantes());
 		return mView;
 	}
 	
@@ -60,6 +65,7 @@ public class CarroController {
 		mView.addObject("chave", chaveService.buscarTodasChaves());
 		mView.addObject("documento", documentoService.buscarTodosDocumentos());
 		mView.addObject("acessorio", acessorioService.buscarTodosAcessorios());
+		mView.addObject("fabricante", fabricanteService.buscarTodosFabricantes());
 		return mView;
 	}
 	
