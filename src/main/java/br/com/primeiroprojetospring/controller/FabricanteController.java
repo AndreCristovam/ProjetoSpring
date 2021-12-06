@@ -1,11 +1,18 @@
 package br.com.primeiroprojetospring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.primeiroprojetospring.domain.Fabricante;
@@ -15,20 +22,45 @@ import br.com.primeiroprojetospring.service.FabricanteService;
 @RequestMapping("fabricante")
 public class FabricanteController {
 	
+	private static final String FABRICANTE = "fabricante";
+	
 	@Autowired
 	private FabricanteService fabricanteService;
+	
+	@GetMapping("find/{id}")
+	public ResponseEntity<Fabricante> find(@PathVariable("id") Integer id){
+		return ResponseEntity.ok().body(fabricanteService.buscarFabricanteID(id));
+	}
+	
+	@PostMapping("cadastrarFabricante")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Fabricante> cadastrarFabricanteAPI(@RequestBody Fabricante fabricante){
+		return ResponseEntity.ok().body(fabricanteService.salvar(fabricante));
+	}
+	
+	@GetMapping("/todosFabricante")
+	public ResponseEntity<List<Fabricante>> devolverTodosFabricantes(){
+		return ResponseEntity.ok().body(fabricanteService.buscarTodosFabricantes());
+	}
+	
+	@PutMapping("/alteraFabricante")
+	public ResponseEntity<Fabricante> alteraFabricante(@RequestBody Fabricante fabricante){
+		Fabricante novoFabricante = fabricanteService.salvar(fabricante);
+		return ResponseEntity.status(HttpStatus.CREATED).body(novoFabricante);
+	}
+	
 	
 	@GetMapping("/listaFabricantes")
 	public ModelAndView  listaTodosFabricante() {
 		ModelAndView mView = new ModelAndView("fabricante/paginaListaFabricantes");
-		mView.addObject("fabricante", fabricanteService.buscarTodosFabricantes());
+		mView.addObject(FABRICANTE, fabricanteService.buscarTodosFabricantes());
 		return mView;
 	}
 	
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastrarFabricante() {
 		ModelAndView mView = new ModelAndView("fabricante/cadastrarFabricante");
-		mView.addObject("fabricante", new Fabricante());
+		mView.addObject(FABRICANTE, new Fabricante());
 		return mView;
 	}
 	
@@ -41,7 +73,7 @@ public class FabricanteController {
 	@GetMapping("/alterar/{id}")
 	public ModelAndView alteraFabricante(@PathVariable("id") Integer idFabricante) {
 		ModelAndView mView = new ModelAndView("fabricante/alteraFabricante");
-		mView.addObject("fabricante", fabricanteService.buscarFabricanteID(idFabricante));
+		mView.addObject(FABRICANTE, fabricanteService.buscarFabricanteID(idFabricante));
 		return mView;
 	}
 	

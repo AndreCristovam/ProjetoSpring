@@ -15,20 +15,22 @@ import br.com.primeiroprojetospring.service.ProfessorService;
 @RequestMapping("professor")
 public class ProfessorController {
 	
+	private static final String PROFESSOR = "professor";
+	
 	@Autowired
 	private ProfessorService professorService;
 	
 	@GetMapping("/listaProfessor")
 	public ModelAndView listaTodosProfessores() {
 		ModelAndView mView = new ModelAndView("professor/paginaListaProfessores");
-		mView.addObject("professor", professorService.buscarTodosProfessores());
+		mView.addObject(PROFESSOR, professorService.buscarTodosProfessores());
 		return mView;
 	}
 
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastrarProfessor() {
 		ModelAndView mView = new ModelAndView("professor/cadastrarProfessor");
-		mView.addObject("professor", new Professor());
+		mView.addObject(PROFESSOR, new Professor());
 		return mView;
 	}
 	
@@ -41,7 +43,7 @@ public class ProfessorController {
 	@GetMapping("/alterar/{id}")
 	public ModelAndView alteraProfessor(@PathVariable("id") Integer idProfessor) {
 		ModelAndView mView = new ModelAndView("professor/alteraProfessor");
-		mView.addObject("professor", professorService.buscarProfessorID(idProfessor));
+		mView.addObject(PROFESSOR, professorService.buscarProfessorID(idProfessor));
 		return mView;
 	}
 	
