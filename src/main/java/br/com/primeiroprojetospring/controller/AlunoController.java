@@ -42,7 +42,7 @@ public class AlunoController {
 	
 	//novo
 	@DeleteMapping("exluirAluno/{id}")
-	public ResponseEntity<Void> excluirAluno(@PathVariable("id") Integer id){
+	public ResponseEntity<Void> excluirP(@PathVariable("id") Integer id){
 		alunoService.excluir(id);
 		return ResponseEntity.noContent().build();
 	}

@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Carro implements Serializable {
 	
@@ -44,56 +47,5 @@ public class Carro implements Serializable {
 	@JoinColumn(name="ID_FABRICANTE")
 	private Fabricante fabricanteCarro;
 
-	public Fabricante getFabricanteCarro() {
-		return fabricanteCarro;
-	}
-
-	public void setFabricanteCarro(Fabricante fabricanteCarro) {
-		this.fabricanteCarro = fabricanteCarro;
-	}
-
-	public List<Acessorio> getAcessorios() {
-		return acessorios;
-	}
-
-	public void setAcessorios(List<Acessorio> acessorios) {
-		this.acessorios = acessorios;
-	}
-
-	public Documento getDocumentoCarro() {
-		return documentoCarro;
-	}
-
-	public void setDocumentoCarro(Documento documentoCarro) {
-		this.documentoCarro = documentoCarro;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-
-	public Chave getChaveCarro() {
-		return chaveCarro;
-	}
-
-	public void setChaveCarro(Chave chaveCarro) {
-		this.chaveCarro = chaveCarro;
-	}
-
-	
-	
-	
 	
 }

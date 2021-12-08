@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.querydsl.jpa.impl.JPAQuery;
+
 import br.com.primeiroprojetospring.domain.Carro;
 import br.com.primeiroprojetospring.domain.Documento;
 import br.com.primeiroprojetospring.domain.Fabricante;
@@ -116,14 +118,19 @@ public class CarroController {
 	
 	
 	@GetMapping("findCarroforIdFabricante/{id}")
-	public ResponseEntity<List<Carro>> findCarroforIdFabricante(@PathVariable("id") Fabricante id){
-		return ResponseEntity.ok().body(carroService.findCarroforIdFabricante(id));
+	public ResponseEntity<List<Carro>> findCarroforIdFabricante(@PathVariable("id") Integer id){
+		return ResponseEntity.ok().body(carroService.buscaCarroIdFabricante(id));
 	}
 	
 	
 	@GetMapping("findCarroforIdDocumento/{id}")
-	public ResponseEntity<List<Carro>> findCarroforIdDocumento(@PathVariable("id") Documento id){
-		return ResponseEntity.ok().body(carroService.findCarroforIdDocumento(id));
+	public ResponseEntity<List<Carro>> findCarroforIdDocumento(@PathVariable("id") Integer id){
+		return ResponseEntity.ok().body(carroService.buscaCarroIdDocumento(id));
+	}
+	
+	@GetMapping("findCarroTetoSolar")
+	public ResponseEntity<List<Carro>> findCarroTetoSolar (){
+		return ResponseEntity.ok().body(carroService.buscarCarroTetoSolar());
 	}
 
 }
