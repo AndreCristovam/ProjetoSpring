@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.primeiroprojetospring.domain.Carro;
+import br.com.primeiroprojetospring.domain.Documento;
+import br.com.primeiroprojetospring.domain.Fabricante;
 import br.com.primeiroprojetospring.service.AcessorioService;
 import br.com.primeiroprojetospring.service.CarroService;
 import br.com.primeiroprojetospring.service.ChaveService;
@@ -110,6 +112,18 @@ public class CarroController {
 	public ModelAndView excluir(@PathVariable("id") Integer id) {
 		carroService.excluir(id);
 		return listaTodosCarro();
+	}
+	
+	
+	@GetMapping("findCarroforIdFabricante/{id}")
+	public ResponseEntity<List<Carro>> findCarroforIdFabricante(@PathVariable("id") Fabricante id){
+		return ResponseEntity.ok().body(carroService.findCarroforIdFabricante(id));
+	}
+	
+	
+	@GetMapping("findCarroforIdDocumento/{id}")
+	public ResponseEntity<List<Carro>> findCarroforIdDocumento(@PathVariable("id") Documento id){
+		return ResponseEntity.ok().body(carroService.findCarroforIdDocumento(id));
 	}
 
 }

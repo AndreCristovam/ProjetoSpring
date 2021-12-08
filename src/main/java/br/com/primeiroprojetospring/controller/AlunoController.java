@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +31,29 @@ public class AlunoController {
 	
 	@GetMapping("find/{id}")
 	public ResponseEntity<Aluno> find(@PathVariable("id") Integer id){
-		return ResponseEntity.ok().body(alunoService.buscarAlunoID(id));
+		return ResponseEntity.ok().body(alunoService.buscarPorID(id));
 	}
+	
+	//novo
+	@GetMapping("/findByNome/{nome}")
+	public ResponseEntity<List<Aluno>> findByNome(@PathVariable("nome") String nome) {
+		return ResponseEntity.ok().body(alunoService.buscaPorNome(nome));
+	}
+	
+	//novo
+	@DeleteMapping("exluirAluno/{id}")
+	public ResponseEntity<Void> excluirAluno(@PathVariable("id") Integer id){
+		alunoService.excluir(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	//novo
+	@GetMapping("/findByNomeStartWith/{inicio}/{fim}")
+	public ResponseEntity<List<Aluno>> findByNomeStartWithAndEndWith(@PathVariable("inicio") String inicio,
+			@PathVariable("fim") String fim) {
+		return ResponseEntity.ok().body(alunoService.findAlunoStartWithAndEndWith(inicio, fim));
+	}
+	
 	
 	@PostMapping("cadastrarAluno")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -48,9 +70,7 @@ public class AlunoController {
 	public ResponseEntity<Aluno> alteraAluno(@RequestBody Aluno aluno){
 		Aluno novoAluno = alunoService.salvar(aluno);
 		return ResponseEntity.status(HttpStatus.CREATED).body(novoAluno);
-	}
-	
-	// até aqui
+	}	
 	
 	@GetMapping("/listaAlunos")
 	public ModelAndView  listaTodosAluno() {
@@ -75,7 +95,7 @@ public class AlunoController {
 	@GetMapping("/alterar/{id}")
 	public ModelAndView alteraAluno(@PathVariable("id") Integer idAluno) {
 		ModelAndView mView = new ModelAndView("aluno/alteraAluno");
-		mView.addObject(ALUNO, alunoService.buscarAlunoID(idAluno));
+		mView.addObject(ALUNO, alunoService.buscarPorID(idAluno));
 		return mView;
 	}
 	

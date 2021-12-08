@@ -3,11 +3,16 @@ package br.com.primeiroprojetospring.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
 import br.com.primeiroprojetospring.domain.Documento;
+import br.com.primeiroprojetospring.domain.QDocumento;
 import br.com.primeiroprojetospring.repository.DocumentoRepository;
 
 @Service
@@ -15,6 +20,9 @@ public class DocumentoService {
 	
 	@Autowired
 	private DocumentoRepository documentoRepository;
+	
+	@Autowired
+	private EntityManager entityManager;
 	
 	public List<Documento> buscarTodosDocumentos() {
 		return documentoRepository.findAll();
@@ -39,6 +47,13 @@ public class DocumentoService {
 	
 	public void excluir(Integer id) {
 		documentoRepository.deleteById(id);	
+	}
+	
+	public List<Documento> findDocumentoNomeAndCodigo(String nome, String codigo) {
+		QDocumento documento = QDocumento.documento;
+		
+		return new JPAQueryFactory(entityManager).selectFrom(documento)
+		.where(documento.nome.eq(nome).and(documento.codigo.eq(codigo))).fetch();
 	}
 
 }

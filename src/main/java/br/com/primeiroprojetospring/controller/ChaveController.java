@@ -30,7 +30,7 @@ public class ChaveController {
 	@GetMapping("find/{id}")
 	public ResponseEntity<Chave> find(@PathVariable("id") Integer id){
 		return ResponseEntity.ok().body(chaveService.buscarChaveID(id));
-	}
+	}	
 	
 	@PostMapping("cadastrarChave")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -38,7 +38,7 @@ public class ChaveController {
 		return ResponseEntity.ok().body(chaveService.salvar(chave));
 	}
 	
-	@GetMapping("/todosChave")
+	@GetMapping("/todasChave")
 	public ResponseEntity<List<Chave>> devolverTodosChave(){
 		return ResponseEntity.ok().body(chaveService.buscarTodasChaves());
 	}
@@ -87,5 +87,10 @@ public class ChaveController {
 	public ModelAndView excluir(@PathVariable("id") Integer id) {
 		chaveService.excluir(id);
 		return listaTodasChaves();
+	}
+	
+	@GetMapping("/findByCodigoChave/{codigo}")
+	public ResponseEntity<List<Chave>> findChaveCodigo(@PathVariable("codigo") String codigo) {
+		return ResponseEntity.ok().body(chaveService.findCodigoChave(codigo));
 	}
 }

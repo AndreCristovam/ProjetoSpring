@@ -13,10 +13,6 @@ import javax.persistence.Id;
 public class Aluno implements Serializable {
 	
 
-	
-	/**
-	 * Cria um endereço para localizar a serialização - para que nenhum dado se perda com o tempo
-	 */
 	private static final long serialVersionUID = -886604392341594251L;
 
 	@Id

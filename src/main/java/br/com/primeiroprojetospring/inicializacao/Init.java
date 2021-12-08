@@ -27,7 +27,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		
 		Aluno aluno1 = new Aluno();
-		aluno1.setNome("Sandro S2 Nelson");
+		aluno1.setNome("Sandro");
 		alunoService.salvar(aluno1);
 		
 		Aluno aluno2 = new Aluno();

@@ -30,7 +30,7 @@ public class AcessorioController {
 	@GetMapping("find/{id}")
 	public ResponseEntity<Acessorio> find(@PathVariable("id") Integer id){
 		return ResponseEntity.ok().body(acessorioService.buscarAcessorioID(id));
-	}
+	}	
 	
 	@PostMapping("cadastrarAcessorio")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -86,6 +86,11 @@ public class AcessorioController {
 	public ModelAndView excluir(@PathVariable("id") Integer id) {
 		acessorioService.excluir(id);
 		return listaTodosAcessorio();
+	}
+	
+	@GetMapping("/findByNomeAcessorio/{nome}")
+	public ResponseEntity<List<Acessorio>> findAcessorioNome(@PathVariable("nome") String nome) {
+		return ResponseEntity.ok().body(acessorioService.findAcessorioNome(nome));
 	}
 
 }

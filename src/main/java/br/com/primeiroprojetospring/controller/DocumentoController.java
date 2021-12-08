@@ -31,7 +31,7 @@ public class DocumentoController {
 	@GetMapping("find/{id}")
 	public ResponseEntity<Documento> find(@PathVariable("id") Integer id){
 		return ResponseEntity.ok().body(documentoService.buscarDocumentoID(id));
-	}
+	}	
 	
 	@PostMapping("cadastrarDocumento")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -48,10 +48,7 @@ public class DocumentoController {
 	public ResponseEntity<Documento> alteraDocumento(@RequestBody Documento documento){
 		Documento novoDocumento = documentoService.salvar(documento);
 		return ResponseEntity.status(HttpStatus.CREATED).body(novoDocumento);
-	}
-	
-	
-	
+	}	
 	
 	@GetMapping("/listaDocumentos")
 	public ModelAndView  listaTodosDocumento() {
@@ -90,6 +87,12 @@ public class DocumentoController {
 	public ModelAndView excluir(@PathVariable("id") Integer id) {
 		documentoService.excluir(id);
 		return listaTodosDocumento();
+	}
+	
+	@GetMapping("/findByNomeAndCodigoDocumento/{nome}/{codigo}")
+	public ResponseEntity<List<Documento>> findByNomeAndCodigoDocumento(@PathVariable("nome") String nome,
+			@PathVariable("codigo") String codigo) {
+		return ResponseEntity.ok().body(documentoService.findDocumentoNomeAndCodigo(nome, codigo));
 	}
 
 }

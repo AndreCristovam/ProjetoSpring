@@ -30,7 +30,7 @@ public class FabricanteController {
 	@GetMapping("find/{id}")
 	public ResponseEntity<Fabricante> find(@PathVariable("id") Integer id){
 		return ResponseEntity.ok().body(fabricanteService.buscarFabricanteID(id));
-	}
+	}	
 	
 	@PostMapping("cadastrarFabricante")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -87,6 +87,11 @@ public class FabricanteController {
 	public ModelAndView excluir(@PathVariable("id") Integer id) {
 		fabricanteService.excluir(id);
 		return listaTodosFabricante();
+	}
+	
+	@GetMapping("findFabricanteForPais/{pais}")
+	public ResponseEntity<List<Fabricante>> findFabricantePais(@PathVariable("pais") String pais){
+		return ResponseEntity.ok().body(fabricanteService.findFabricanteForPais(pais));
 	}
 
 }
