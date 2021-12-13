@@ -7,8 +7,6 @@ import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.querydsl.jpa.impl.JPAQuery;
-
 import br.com.primeiroprojetospring.dao.CarroDAO;
 import br.com.primeiroprojetospring.domain.Carro;
 import br.com.primeiroprojetospring.repository.CarroRepository;

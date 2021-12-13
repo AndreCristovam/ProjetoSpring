@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http:www.thymeleaf.org">
+	xmlns:th="http:www.thymeleaf.org"
+	xmlns:sec="http:www.thymeleaf.org/extras/spring-security">
 <head>
 <title>Listagem de Carros</title>
 <link
@@ -52,7 +53,9 @@
 				</div>
 			</div>
 		</div>
-		<a class="btn tbn-sm btn-success" th:href="@{/carro/cadastrar}">CADASTRAR NOVO CARRO</a>
+		<div class ="panel-footer" sec:authorize="hasRole('ADMIN')">
+			<a class="btn tbn-sm btn-success" th:href="@{/carro/cadastrar}">CADASTRAR NOVO CARRO</a>
+		</div>
 	</div>
 
 </body>

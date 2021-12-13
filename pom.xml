@@ -81,6 +81,12 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -113,7 +119,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>    
+			</plugin>
 		</plugins>
 	</build>
 

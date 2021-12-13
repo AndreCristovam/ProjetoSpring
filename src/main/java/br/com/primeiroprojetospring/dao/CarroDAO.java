@@ -5,14 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import br.com.primeiroprojetospring.domain.Carro;
-import br.com.primeiroprojetospring.domain.QAcessorio;
 import br.com.primeiroprojetospring.domain.QCarro;
 import br.com.primeiroprojetospring.domain.QDocumento;
 import br.com.primeiroprojetospring.domain.QFabricante;

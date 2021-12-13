@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import br.com.primeiroprojetospring.domain.Acessorio;
@@ -13,12 +14,18 @@ import br.com.primeiroprojetospring.domain.Carro;
 import br.com.primeiroprojetospring.domain.Chave;
 import br.com.primeiroprojetospring.domain.Documento;
 import br.com.primeiroprojetospring.domain.Fabricante;
+import br.com.primeiroprojetospring.domain.Permissao;
+import br.com.primeiroprojetospring.domain.Role;
+import br.com.primeiroprojetospring.domain.Usuario;
 import br.com.primeiroprojetospring.service.AcessorioService;
 import br.com.primeiroprojetospring.service.AlunoService;
 import br.com.primeiroprojetospring.service.CarroService;
 import br.com.primeiroprojetospring.service.ChaveService;
+import br.com.primeiroprojetospring.service.CurrentUserDetailsService;
 import br.com.primeiroprojetospring.service.DocumentoService;
 import br.com.primeiroprojetospring.service.FabricanteService;
+import br.com.primeiroprojetospring.service.PermissaoService;
+import br.com.primeiroprojetospring.service.RoleService;
 
 
 @Component
@@ -41,6 +48,15 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 	
 	@Autowired
 	private CarroService carroService;
+	
+	@Autowired
+	private CurrentUserDetailsService usuarioService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private PermissaoService permissaoService;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -145,7 +161,59 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 		c4.setDocumentoCarro(doc2);
 		c4.setFabricanteCarro(f3);
 		c4.setModelo("DDS");
-		carroService.salvar(c4);
+		carroService.salvar(c4);	
+		
+		//############################################
+		
+		Usuario usuario = new Usuario();
+		usuario.setNomeCompleto("Yuri Rocha");
+		usuario.setLogin("admin");
+		usuario.setPassword(new BCryptPasswordEncoder().encode("1234"));
+
+		Role roleAdmin = new Role();
+		roleAdmin.setNomeRole(Role.ROLE_ADMIN);
+
+		roleService.salvar(roleAdmin);
+
+		usuario.setRoles(Arrays.asList(roleAdmin));
+
+		usuarioService.salvar(usuario);
+		
+		
+		//############################################
+		
+		Usuario usuario2 = new Usuario();
+		usuario2.setNomeCompleto("Sandro Nelson");
+		usuario2.setLogin("SandNel");
+		usuario2.setPassword(new BCryptPasswordEncoder().encode("12345"));
+		
+		Role roleUser = new Role();
+		roleUser.setNomeRole(Role.ROLE_USER);
+		roleService.salvar(roleUser);
+		
+		usuario2.setRoles(Arrays.asList(roleUser));
+		usuarioService.salvar(usuario2);
+		
+		Permissao permissaoUser = new Permissao();
+		permissaoUser.setNomePermissao(Permissao.INSERT);
+		permissaoService.salvar(permissaoUser);
+		
+		usuario2.setPermissoes(Arrays.asList(permissaoUser));
+		usuarioService.salvar(usuario2);
+		
+		//############################################
+		
+		Usuario usuario3 = new Usuario();
+		usuario3.setNomeCompleto("Fabricio");
+		usuario3.setLogin("fabricio");
+		usuario3.setPassword(new BCryptPasswordEncoder().encode("12345"));
+		
+		roleService.salvar(roleUser);
+		
+		usuario3.setRoles(Arrays.asList(roleUser));
+		usuarioService.salvar(usuario3);
 	}
+	
+	
 	
 }
